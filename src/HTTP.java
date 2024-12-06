@@ -27,6 +27,18 @@ public class HTTP {
         this.useCommandLinePhp = useCommandLinePhp;
         clientHandler.useCommandLinePhp = this.useCommandLinePhp;
     }
+    public HTTP(
+            boolean useCommandLinePhp,
+            String host_server_php,
+            int port_server_php
+    ) {
+        this.serverSocket = null;
+        this.routeHandlers = new HashMap<>();
+        clientHandler = new ClientHandler(null, routeHandlers, host_server_php, port_server_php);
+        this.useCommandLinePhp = useCommandLinePhp;
+        clientHandler.useCommandLinePhp = this.useCommandLinePhp;
+    }
+
 
     public void addRouteHandler(String path, String handler) {
         routeHandlers.put(path, handler);

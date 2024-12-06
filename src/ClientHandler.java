@@ -17,14 +17,31 @@ class ClientHandler implements Runnable {
     // Cambia esta variable según la opción elegida en Main
     boolean useCommandLinePhp; // Cambia a true para usar la línea de comandos
 
+    String host_server_php; // host donde se encuentra el servidor php
+    int    port_server_php; // puerto donde se ejecuta
+
     void setClientSocket(Socket clientSocket){
         this.clientSocket = clientSocket;
     }
 
     public ClientHandler(Socket socket, Map<String, String> routeHandlers) {
-        this.clientSocket = socket;
-        this.routeHandlers = routeHandlers;
-        useCommandLinePhp = false;
+        this.clientSocket      = socket;
+        this.routeHandlers     = routeHandlers;
+        this.useCommandLinePhp = false;
+        this.host_server_php   = "127.0.0.1";
+        this.port_server_php   = 8000;
+    }
+
+    public ClientHandler(
+            Socket socket,
+            Map<String, String> routeHandlers,
+            String host_server_php,
+            int port_server_php) {
+        this.clientSocket      = socket;
+        this.routeHandlers     = routeHandlers;
+        this.useCommandLinePhp = false;
+        this.host_server_php   = host_server_php;
+        this.port_server_php   = port_server_php;
     }
 
     @Override
