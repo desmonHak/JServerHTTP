@@ -14,12 +14,19 @@ php -S 127.0.0.1:8000
 Esto pondra a la escucha el servidor en el puerto 8000.
 
 ## Class `HTTP`
+
+|Constructor and Description|
+|:---|
+|``private ServerSocket serverSocket``<br>El atributo `serverSocket` es un objeto de tipo `ServerSocket` que permite escuchar las peticiones de los clientes.|
+|``private final Map<String, String> routeHandlers``<br>El atributo `routeHandlers` es un mapa que permite almacenar las rutas de los recursos y los manejadores de las peticiones HTTP.|
+|``ClientHandler clientHandler``<br>El atributo `clientHandler` es un objeto de tipo `ClientHandler` que permite manejar las peticiones HTTP de los clientes.|
+|``private boolean useCommandLinePhp``<br>El atributo `useCommandLinePhp` es un booleano que permite especificar si se debe usar el servidor `php` remoto o usar `php` CLI.|
+
 ### Constructores de class `HTTP`
 
 |Constructor and Description|
 |:---|
-|`HTTP()` <br>El metodo crea un nuevo objeto HTTP.
-Los objetos HTTP crean un nuevo objeto de `ClientHandler` para manejar las peticiones HTTP de los clientes. Por defecto el servidor pondra `useCommandLinePhp = false`, `host_server_php = "127.0.0.1"` y `port_server_php = 8000`. |
+|`HTTP()` <br>El metodo crea un nuevo objeto HTTP. Los objetos HTTP crean un nuevo objeto de `ClientHandler` para manejar las peticiones HTTP de los clientes. Por defecto el servidor pondra `useCommandLinePhp = false`, `host_server_php = "127.0.0.1"` y `port_server_php = 8000`. |
 |`HTTP(boolean useCommandLinePhp)`<br>El metodo crea un nuevo objeto HTTP que permite `useCommandLinePhp` para especificar si se debe usar el servidor ``php`` remoto o usar ``php`` CLI.|
 |`HTTP(boolean useCommandLinePhp,String host_server_php,int port_server_php)`<br>El metodo crea un nuevo objeto HTTP que permite `useCommandLinePhp` para especificar si se debe usar el servidor ``php`` remoto o usar ``php`` CLI, permite especificar el host y el puerto del servidor ``php`` remoto.|
 
