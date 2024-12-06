@@ -18,13 +18,10 @@ Esto pondra a la escucha el servidor en el puerto 8000.
 
 |Constructor and Description|
 |:---|
-|`HTTP()`
-El metodo crea un nuevo objeto HTTP.
+|`HTTP()` <br>El metodo crea un nuevo objeto HTTP.
 Los objetos HTTP crean un nuevo objeto de `ClientHandler` para manejar las peticiones HTTP de los clientes. Por defecto el servidor pondra `useCommandLinePhp = false`, `host_server_php = "127.0.0.1"` y `port_server_php = 8000`. |
-|`HTTP(boolean useCommandLinePhp)`
-El metodo crea un nuevo objeto HTTP que permite `useCommandLinePhp` para especificar si se debe usar el servidor ``php`` remoto o usar ``php`` CLI.|
-|`HTTP(boolean useCommandLinePhp,String host_server_php,int port_server_php)`
-El metodo crea un nuevo objeto HTTP que permite `useCommandLinePhp` para especificar si se debe usar el servidor ``php`` remoto o usar ``php`` CLI, permite especificar el host y el puerto del servidor ``php`` remoto.|
+|`HTTP(boolean useCommandLinePhp)`<br>El metodo crea un nuevo objeto HTTP que permite `useCommandLinePhp` para especificar si se debe usar el servidor ``php`` remoto o usar ``php`` CLI.|
+|`HTTP(boolean useCommandLinePhp,String host_server_php,int port_server_php)`<br>El metodo crea un nuevo objeto HTTP que permite `useCommandLinePhp` para especificar si se debe usar el servidor ``php`` remoto o usar ``php`` CLI, permite especificar el host y el puerto del servidor ``php`` remoto.|
 
 
 ### Metodos de class `HTTP`
