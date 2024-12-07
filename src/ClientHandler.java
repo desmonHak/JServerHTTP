@@ -1,16 +1,10 @@
 import java.io.*;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
+
 class ClientHandler implements Runnable {
     private Socket clientSocket;
     private final Map<String, String> routeHandlers;
@@ -99,6 +93,18 @@ class ClientHandler implements Runnable {
         } else if ("POST".equals(method)) {
             return handlePost(path, body);
         } else {
+            switch (method) {
+                case "HEAD":
+                case "OPTIONS":
+                case "TRACE":
+                case "CONNECT":
+                case "PATCH":
+                case "DELETE":
+                case "PUT":
+                case "QUERY":
+                    return createHttpResponse("501 Not Implemented", "text/plain", "501 - Método no implementado");
+                default: break;
+            }
             return createHttpResponse("405 Method Not Allowed", "text/plain", "405 - Método no permitido");
         }
     }

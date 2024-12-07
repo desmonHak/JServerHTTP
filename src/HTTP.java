@@ -1,10 +1,6 @@
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,17 +9,23 @@ public class HTTP {
     private final Map<String, String> routeHandlers;
     ClientHandler clientHandler;
     private boolean useCommandLinePhp;
+    private String host_server_php;
+    private int port_server_php;
 
     public HTTP() {
         this.serverSocket = null;
         this.routeHandlers = new HashMap<>();
-        useCommandLinePhp = false;
+        this.useCommandLinePhp = false;
+        this.host_server_php   = "127.0.0.1";
+        this.port_server_php   = 8000;
         clientHandler = new ClientHandler(null, routeHandlers);
     }
     public HTTP(boolean useCommandLinePhp) {
         this.serverSocket = null;
         this.routeHandlers = new HashMap<>();
         clientHandler = new ClientHandler(null, routeHandlers);
+        this.host_server_php   = "127.0.0.1";
+        this.port_server_php   = 8000;
         this.useCommandLinePhp = useCommandLinePhp;
         clientHandler.useCommandLinePhp = this.useCommandLinePhp;
     }
@@ -34,7 +36,9 @@ public class HTTP {
     ) {
         this.serverSocket = null;
         this.routeHandlers = new HashMap<>();
-        clientHandler = new ClientHandler(null, routeHandlers, host_server_php, port_server_php);
+        this.host_server_php   = host_server_php;
+        this.port_server_php   = port_server_php;
+        clientHandler = new ClientHandler(null, routeHandlers, this.host_server_php, this.port_server_php);
         this.useCommandLinePhp = useCommandLinePhp;
         clientHandler.useCommandLinePhp = this.useCommandLinePhp;
     }
@@ -54,9 +58,9 @@ public class HTTP {
                 try {
                     Socket client = serverSocket.accept();
                     System.out.println("Cliente conectado: " + client.getInetAddress().getHostAddress());
-                    clientHandler = new ClientHandler(client, routeHandlers);
+                    clientHandler = new ClientHandler(client, routeHandlers, this.host_server_php, this.port_server_php);
                     clientHandler.useCommandLinePhp = this.useCommandLinePhp;
-                    clientHandler.setClientSocket(client); // añadir el socket
+                    //clientHandler.setClientSocket(client); // añadir el socket
                     new Thread(clientHandler).start();
                 } catch (IOException e) {
                     System.out.println("Error al aceptar la conexión: " + e.getMessage());
